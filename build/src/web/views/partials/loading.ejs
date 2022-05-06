@@ -1,0 +1,52 @@
+<style>
+    .box {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 10%;
+    }
+
+    .box1,
+    .box2 {
+        height: 20px;
+        width: 20px;
+        background: rgba(119, 135, 208, 1);
+    }
+
+    .box1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: move 4s infinite ease-in-out;
+    }
+
+    .box2 {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        animation: move 4s infinite ease-in-out;
+        animation-delay: -2s;
+    }
+
+    @keyframes move {
+        25% {
+            transform: translateX(50px) rotate(90deg) scale(0.5)
+        }
+
+        50% {
+            transform: translateX(50px) translateY(50px) rotate(90deg) scale(1)
+        }
+
+        75% {
+            transform: translateX(0px) translateY(50px) rotate(90deg) scale(0.5)
+        }
+
+        100% {
+            transform: rotate(90deg) scale(1)
+        }
+    }
+</style>
+<div class="box">
+    <div class="box1"></div>
+    <div class="box2"></div>
+</div>

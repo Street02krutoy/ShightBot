@@ -1,0 +1,28 @@
+<%- include("./partials/head.ejs") %>
+    <style>
+        .guild {
+            margin: 10px;
+            width: 7.5vw;
+            height: 18.75vh;
+            background-color: rgba(47, 49, 54, 1);
+            border-radius: 24px;
+            float: left;
+            font-size: 0.75vw;
+            text-align: center;
+        }
+    </style>
+
+    <div style="text-align: center; display: flex; justify-content: center;vertical-align: middle;opacity: 0;transition: 1s;"
+        id="guildlist"></div>
+    <script>
+        pause(1000).then(() => {
+            let a = document.getElementById("guildlist");
+            a.style.opacity = 1;
+            a.innerHTML = [
+                '<div class = "guild">',
+                '<img style="border-radius: 24px; width:15vh; height: 15vh; float: left;"src = "https://cdn.discordapp.com/avatars/954802795624693792/2c66ee4db43e2adfce6a9a2c6bfa992c.webp">',
+                '<div style="">test server</div>',
+                '</div>'
+            ].join("\n");
+        })
+    </script>

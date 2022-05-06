@@ -1,0 +1,55 @@
+<%- include("./partials/head.ejs") %>
+    <style>
+        .stat {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .stat.container {
+            display: inline-block;
+            text-align: center;
+            font-size: 32px;
+            margin-top: 10px;
+            margin-right: 10px;
+            border-radius: 24px;
+            width: 7vw;
+            background: rgba(47, 49, 54, 1);
+        }
+
+        .stat.container.text {
+            vertical-align: bottom;
+            transform: translateY(13wh);
+        }
+    </style>
+    <div class="stat">
+        <div class="stat container">
+            <div id="guildstat">
+                <div class="box" style="vertical-align: middle; margin-top: 10px;">
+                    <div class="box1"></div>
+                    <div class="box2"></div>
+                </div>
+            </div>
+            <div class="stat container text">Guilds</div>
+        </div>
+        <div class="stat container">
+            <div id="shardsstat">
+                <div class="box" style="vertical-align: middle; margin-top: 10px; ">
+                    <div class="box1"></div>
+                    <div class="box2"></div>
+                </div>
+            </div>
+            <div class="stat container text">Shards
+            </div>
+        </div>
+    </div>
+    <script>
+        (async () => {
+            await fetch("/api/stats").then(async (res) => {
+                if (res.status != 200) return; //не забыть добавить "праизашла ашыбка"
+                resjson = await res.json();
+                console.log(resjson);
+                document.getElementById("guildstat").innerText = resjson.guilds;
+                document.getElementById("shardsstat").innerText = Object.values(resjson.shards).length;
+            })
+        })()
+    </script>

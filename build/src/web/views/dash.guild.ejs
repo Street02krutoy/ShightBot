@@ -1,0 +1,33 @@
+<%- include("./partials/head.ejs") %>
+    <script>
+        fetch("/api/guilds/<%=id%>").then(async r => {
+            if (r.status !== 200) return;
+            const rj = await r.json();
+            document.getElementById("guildname").innerText = `${rj.name} (${rj.id})`
+            console.log(rj)
+            for (let c in rj.channels) {
+                let ch = rj.channels[c];
+                $(document.getElementById("channels")).append($(`<option value="channel${ch.id}">${ch.name}</option>`))
+            }
+            return rj;
+        })
+    </script>
+    <div id="guildname">Loading..</div>
+    <div id="settings">
+        <select id="channels" class="dinput">
+        </select>
+        <div id="message"><input id="messageVal" class="dinput"></input></div>
+        <div id="fields"><button id="addField" class="dbtn">add field
+            </button></div>
+        <button class="dbtn" id="test">фыв</button>
+        <script>
+            let num = 0;
+            $(document.getElementById("addField")).click(() => {
+                num++;
+                $(document.getElementById("fields")).parent().append($(`<input placeholder ="Имя форм ${num}" id = "fieldVal${num}" class="dinput">`), $(``), $(`<br>`));
+            });
+            $(document.getElementById("test")).click(async () => {
+                fetch("/api/guilds/<%=id%>/save").then(async r => console.log(await r.json()))
+            });
+        </script>
+    </div>

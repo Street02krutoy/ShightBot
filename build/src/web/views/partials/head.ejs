@@ -1,0 +1,222 @@
+<style>
+    @import url('http://fonts.cdnfonts.com/css/whitney');
+
+    .dbtn {
+        background: #7289da;
+        display: inline;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 9px 20px;
+        text-decoration: none;
+        transition: .1s
+    }
+
+    .dbtn:hover {
+        background: #6173b5
+    }
+
+    .dbtn-red {
+        border: 1px solid #d74243;
+        display: inline-block;
+        border-radius: 3px;
+        background: #d74243;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 9px 20px;
+        text-decoration: none;
+        transition: .1s
+    }
+
+    .dbtn-red:hover {
+        border: 1px solid #d7424390 !important;
+        background: #d7424390 !important
+    }
+
+    .dbtn-outline {
+        border: 1px solid #7289da;
+        background: transparent;
+        display: inline;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 9px 20px;
+        text-decoration: none;
+        transition: .1s
+    }
+
+    .dbtn-outline:hover {
+        border: 1px solid #6173b5
+    }
+
+    .dbtn-outline-red {
+        border: 1px solid #d7424370;
+        background: transparent;
+        display: inline;
+        border-radius: 3px;
+        color: #d74243;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 9px 20px;
+        text-decoration: none;
+        transition: .1s
+    }
+
+    .dbtn-outline-red:hover {
+        border: 1px solid #d74243 !important
+    }
+
+    .dbtn-link {
+        display: inline;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 9px 20px;
+        text-decoration: none;
+        transition: .1s
+    }
+
+    .dbtn-link:hover {
+        text-decoration: underline
+    }
+
+    .dbtn-link-blue {
+        color: #1bacee;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none
+    }
+
+    .dbtn-link-blue:hover {
+        text-decoration: underline
+    }
+
+    .custom-select-wrapper {
+        position: relative;
+        user-select: none;
+        width: 40rem
+    }
+
+    .dinput {
+        background: #303338;
+        border: 1px solid rgba(0, 0, 0, 0.3) !important;
+        padding: .78rem;
+        width: 40rem;
+        color: #dcddde;
+        border: none;
+        font-weight: 500;
+        outline: none;
+        border-radius: 3px;
+        margin: 10px;
+    }
+
+    .dinput:hover {
+        border: 1px solid rgba(0, 0, 0, 0.5) !important;
+        transition: border .1s
+    }
+
+    .dinput:focus {
+        border: 1px solid #7289da !important;
+        transition: .2s
+    }
+
+    body {
+        font-size: 1.5vw;
+        font-family: 'Whitney-Semibold', sans-serif;
+        background-color: rgb(54, 57, 63);
+        color: rgba(188, 188, 191, 1);
+    }
+
+    a {
+        text-decoration: none;
+        color: rgba(35, 164, 244, 1);
+    }
+
+    #login {
+        margin-top: -5px;
+        margin-right: 10px;
+        font-size: 1.5vw;
+        float: right;
+        vertical-align: top;
+    }
+
+    header {
+        background-color: rgba(47, 49, 54, 1);
+        margin-left: -7px;
+        margin-top: -7px;
+        margin-right: -7px;
+        height: 10vh;
+    }
+
+    .box {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 10%;
+    }
+
+    .box1,
+    .box2 {
+        height: 20px;
+        width: 20px;
+        background: rgba(119, 135, 208, 1);
+    }
+
+    .box1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: move 2s infinite ease-in-out;
+    }
+
+    .box2 {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        animation: move 2s infinite ease-in-out;
+        animation-delay: 1s;
+    }
+
+    @keyframes move {
+        25% {
+            transform: translateX(42px) rotate(-90deg) scale(0.5)
+        }
+
+        50% {
+            transform: translateX(42px) translateY(42px) rotate(-180deg)
+        }
+
+        75% {
+            transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5)
+        }
+
+        100% {
+            transform: rotate(-360deg)
+        }
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<header>
+    <a href="/">
+        <img style="border-radius: 24px; width:10vh; height: 10vh; float: left;"
+            src="https://cdn.discordapp.com/avatars/954802795624693792/2c66ee4db43e2adfce6a9a2c6bfa992c.webp"></a><br>
+    <div style="font-size: 2.5vw;float: left;margin-top: -10px;">ShightBot</div>
+    <div style="font-size: 1.5vw;float: left;margin-left: 2.5vw;vertical-align: middle;"><a href="/stats">Stats</a>
+    </div>
+    <div id="login"><a href="/api/login">Login</a></div>
+    <script>
+        (async () => (
+            await fetch("/api/user").then(async res => {
+                if (res.status == 200) {
+                    const a = await res.json();
+                    document.getElementById("login").innerHTML = `${a.username}#${a.discriminator} <a href = "/api/logout"><img style = "width: 1vw; height: 1vw;"  src = "https://cdn.discordapp.com/attachments/918435846259109891/959173911692603474/unknown.png"></a>`;
+                }
+            })
+        ))()
+        const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+    </script>
+</header>
