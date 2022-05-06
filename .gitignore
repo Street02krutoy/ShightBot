@@ -210,3 +210,5 @@ $RECYCLE.BIN/
 # custom
 config.js
 config.ts
+.idea
+.vscode
